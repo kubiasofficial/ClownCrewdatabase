@@ -59,16 +59,18 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
 });
 
 // Discord login button handler
-const discordBtn = document.getElementById('discord-login-btn');
-if (discordBtn) {
-    discordBtn.addEventListener('click', () => {
-        const clientId = '1487478912719130788';
-        const redirectUri = encodeURIComponent('https://clown-crewdatabase.vercel.app/api/discord');
-        const scope = 'identify';
-        const discordUrl = `https://discord.com/oauth2/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scope}`;
-        window.location.href = discordUrl;
-    });
-}
+window.addEventListener('DOMContentLoaded', () => {
+    const discordBtn = document.getElementById('discord-login-btn');
+    if (discordBtn) {
+        discordBtn.addEventListener('click', () => {
+            const clientId = '1487478912719130788';
+            const redirectUri = encodeURIComponent('https://clown-crewdatabase.vercel.app/api/discord');
+            const scope = 'identify';
+            const discordUrl = `https://discord.com/oauth2/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scope}`;
+            window.location.href = discordUrl;
+        });
+    }
+});
 
 // Po návratu z Discordu (reálné ověření přes backend)
 window.addEventListener('DOMContentLoaded', () => {
