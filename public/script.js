@@ -36,21 +36,33 @@ createMatrixLayer('matrix-bg3', '#005f1a', 22, 90, 0.22); // nejtmavší, nejpom
 
 // Loader and login animation
 // Progress bar animace
-const progress = document.getElementById('progress');
-let progressValue = 0;
-const progressInterval = setInterval(() => {
-    progressValue += 0.5;
-    if (progressValue > 100) progressValue = 100;
-    progress.style.width = progressValue + '%';
-}, 100);
-setTimeout(() => {
-    clearInterval(progressInterval);
-    progress.style.width = '100%';
+function hideLoaderAndShowLogin() {
     document.getElementById('loader').classList.add('hidden');
     const login = document.getElementById('login-container');
     login.classList.remove('hidden');
     setTimeout(() => login.classList.add('visible'), 100);
-}, 20000);
+}
+if (!window.location.search.includes('username=')) {
+    // Loader běží jen pokud nejsme po Discord ověření
+    const progress = document.getElementById('progress');
+    let progressValue = 0;
+    const progressInterval = setInterval(() => {
+        progressValue += 0.5;
+        if (progressValue > 100) progressValue = 100;
+        progress.style.width = progressValue + '%';
+    }, 100);
+    setTimeout(() => {
+        clearInterval(progressInterval);
+        progress.style.width = '100%';
+        hideLoaderAndShowLogin();
+    }, 20000);
+} else {
+    // Pokud jsme po Discord ověření, loader a logo v pozadí skryjeme
+    document.getElementById('loader').classList.add('hidden');
+    document.getElementById('matrix-bg').style.display = 'none';
+    document.getElementById('matrix-bg2').style.display = 'none';
+    document.getElementById('matrix-bg3').style.display = 'none';
+}
 
 // Optional: Prevent form submit (demo only)
 // document.getElementById('login-form').addEventListener('submit', function(e) {
