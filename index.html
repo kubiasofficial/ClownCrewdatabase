@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clown Crew Database</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="matrix-bg"></div>
+    <div id="matrix-bg2"></div>
+    <div id="matrix-bg3"></div>
+    <div id="loader">
+        <div class="logo-circle">
+            <img src="/logo.png" alt="Clown Crew Logo" id="logo">
+        </div>
+        <div id="loading-text">Načítání databáze...</div>
+        <div id="progress-bar"><div id="progress"></div></div>
+    </div>
+    <div id="login-container" class="hidden">
+        <div class="logo-circle login-logo">
+            <img src="/logo.png" alt="Clown Crew Logo" id="logo-login">
+        </div>
+        <form id="login-form">
+            <h2>Přihlášení</h2>
+            <input type="text" placeholder="Přezdívka" name="nickname" required>
+            <input type="password" placeholder="PIN" name="pin" required maxlength="6">
+            <button type="submit">Přihlásit se</button>
+        </form>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
