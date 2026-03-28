@@ -40,5 +40,6 @@ export default async function handler(req, res) {
     avatar: user.avatar || '',
     id: user.id
   });
-  res.redirect(`/?${params.toString()}`);
+  res.writeHead(302, { Location: `https://clown-crewdatabase.vercel.app/?${params.toString()}` });
+  res.end();
 }
