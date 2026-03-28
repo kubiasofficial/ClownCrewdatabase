@@ -21,12 +21,17 @@
         <div class="logo-circle login-logo">
                 <img src="/logo.png" alt="Clown Crew Logo" id="logo-login">
         </div>
-        <form id="login-form">
+        <div id="discord-login-area">
             <h2>Přihlášení</h2>
-            <input type="text" placeholder="Přezdívka" name="nickname" required>
-            <input type="password" placeholder="PIN" name="pin" required maxlength="6">
-            <button type="submit">Přihlásit se</button>
-        </form>
+            <button id="discord-login-btn" type="button">Přihlásit se přes Discord</button>
+        </div>
+        <div id="discord-profile-area" class="hidden">
+            <div id="discord-profile"></div>
+            <div id="discord-loading" class="hidden">
+                <div id="profile-loading-bar"><div id="profile-progress"></div></div>
+                <div id="profile-verifying" class="hidden"></div>
+            </div>
+        </div>
 
     </div>
         <script src="/script.js"></script>

@@ -146,35 +146,74 @@ body {
     letter-spacing: 2px;
     text-shadow: 0 0 10px #00ff41;
 }
-#login-form input {
-    background: #111;
-    border: 1px solid #00ff41;
-    border-radius: 6px;
-    padding: 12px;
-    color: #00ff41;
-    font-size: 1.1em;
-    outline: none;
-    transition: border 0.3s;
-}
-#login-form input:focus {
-    border: 1.5px solid #fff;
-}
-#login-form button {
-    background: #00ff41;
-    color: #111;
+#discord-login-btn {
+    background: #5865F2;
+    color: #fff;
     border: none;
     border-radius: 6px;
-    padding: 12px;
+    padding: 14px 24px;
     font-size: 1.1em;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 0 10px #00ff41a0;
+    box-shadow: 0 0 10px #5865F2a0;
     transition: background 0.3s, color 0.3s;
+    margin-top: 18px;
+    letter-spacing: 1px;
 }
-#login-form button:hover {
-    background: #111;
+#discord-login-btn:hover {
+    background: #404eed;
+}
+#discord-profile-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+#discord-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     color: #00ff41;
-    border: 1px solid #00ff41;
+    font-size: 1.2em;
+    margin-bottom: 18px;
+}
+#discord-profile img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid #5865F2;
+    box-shadow: 0 0 20px #5865F2a0;
+}
+#profile-loading-bar {
+    width: 220px;
+    height: 14px;
+    background: #111;
+    border: 2px solid #00ff41;
+    border-radius: 10px;
+    margin: 30px auto 0 auto;
+    overflow: hidden;
+    box-shadow: 0 0 20px #00ff41a0;
+}
+#profile-progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00ff41 60%, #00ff41cc 100%);
+    border-radius: 10px 0 0 10px;
+    transition: width 0.2s linear;
+}
+#profile-verifying {
+    color: #00ff41;
+    font-size: 2.2em;
+    text-align: center;
+    margin-top: 40px;
+    text-shadow: 0 0 18px #00ff41;
+    animation: verifyingFade 1.5s;
+}
+@keyframes verifyingFade {
+    0% { opacity: 0; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
 }
 .hidden {
     display: none;

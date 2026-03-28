@@ -1,4 +1,3 @@
-
 // Matrix background animation - více vrstev, různé rychlosti, tmavší odstíny
 function createMatrixLayer(targetId, color, fontSize, speed, alpha) {
     const canvas = document.createElement('canvas');
@@ -58,3 +57,65 @@ document.getElementById('login-form').addEventListener('submit', function(e) {
     e.preventDefault();
     alert('Přihlášení odesláno! (demo)');
 });
+
+// Discord login button handler
+const discordBtn = document.getElementById('discord-login-btn');
+if (discordBtn) {
+    discordBtn.addEventListener('click', () => {
+        const clientId = '1487478912719130788';
+        const redirectUri = encodeURIComponent('https://clown-crewdatabase.vercel.app/api/discord');
+        const scope = 'identify';
+        const discordUrl = `https://discord.com/oauth2/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scope}`;
+        window.location.href = discordUrl;
+    });
+}
+
+// Po návratu z Discordu (reálné ověření přes backend)
+window.addEventListener('DOMContentLoaded', () => {
+    const url = new URL(window.location.href);
+    const username = url.searchParams.get('username');
+    const avatar = url.searchParams.get('avatar');
+    const id = url.searchParams.get('id');
+    if (username && id) {
+        // Skryj login, ukaž profil sekci
+        document.getElementById('discord-login-area').classList.add('hidden');
+        const profileArea = document.getElementById('discord-profile-area');
+        profileArea.classList.remove('hidden');
+        // Zobraz reálná data
+        let avatarUrl = avatar && avatar !== '' ? `https://cdn.discordapp.com/avatars/${id}/${avatar}.png` : 'https://cdn.discordapp.com/embed/avatars/0.png';
+        document.getElementById('discord-profile').innerHTML = `<img src="${avatarUrl}" alt="Profil"><div>${username}</div>`;
+        // Loading bar
+        const loading = document.getElementById('discord-loading');
+        loading.classList.remove('hidden');
+        let progress = 0;
+        const bar = document.getElementById('profile-progress');
+        const interval = setInterval(() => {
+            progress += 2;
+            bar.style.width = progress + '%';
+            if (progress >= 100) {
+                clearInterval(interval);
+                // Ověřeno animace
+                document.getElementById('profile-verifying').classList.remove('hidden');
+                document.getElementById('profile-verifying').innerText = `Ověřeno! Vítej, ${username}`;
+                setTimeout(() => {
+                    // Skryj vše, zobraz hlavní menu
+                    profileArea.classList.add('hidden');
+                    showMainMenu(username, avatarUrl);
+                }, 2200);
+            }
+        }, 30);
+    }
+});
+
+function showMainMenu(username, avatar) {
+    // Vlož hlavní menu (zatím jen logo)
+    const main = document.createElement('div');
+    main.id = 'main-menu';
+    main.style.display = 'flex';
+    main.style.flexDirection = 'column';
+    main.style.alignItems = 'center';
+    main.style.justifyContent = 'center';
+    main.style.height = '100vh';
+    main.innerHTML = `<div class="logo-circle" style="margin-bottom:30px;"><img src='/logo.png' style='width:160px;height:160px;'></div>`;
+    document.body.appendChild(main);
+}
