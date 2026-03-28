@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
   const client_id = '1487478912719130788';
   const client_secret = 'SnxRVmP5uqhc_iAkCJ1Vi2ESydA7t_qW';
-  const redirect_uri = 'https://clown-crewdatabase.vercel.app/';
+  const redirect_uri = 'https://clown-crewdatabase.vercel.app/api/discord';
 
   // 1. Získání access tokenu
   const tokenRes = await fetch('https://discord.com/api/oauth2/token', {
