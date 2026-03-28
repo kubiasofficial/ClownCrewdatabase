@@ -147,21 +147,75 @@ body {
     text-shadow: 0 0 10px #00ff41;
 }
 #discord-login-btn {
-    background: #5865F2;
-    color: #fff;
+    background: #00ff41;
+    color: #111;
     border: none;
     border-radius: 6px;
     padding: 14px 24px;
     font-size: 1.1em;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 0 10px #5865F2a0;
+    box-shadow: 0 0 18px #00ff41a0;
     transition: background 0.3s, color 0.3s;
     margin-top: 18px;
     letter-spacing: 1px;
+    text-shadow: 0 0 8px #00ff41;
 }
 #discord-login-btn:hover {
-    background: #404eed;
+    background: #111;
+    color: #00ff41;
+    border: 1px solid #00ff41;
+}
+#identity-check {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    color: #00ff41;
+    font-size: 1.3em;
+    text-shadow: 0 0 10px #00ff41;
+    gap: 18px;
+}
+#identity-check img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 3px solid #00ff41;
+    box-shadow: 0 0 30px #00ff41a0;
+}
+#identity-check .nick {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #00ff41;
+    text-shadow: 0 0 10px #00ff41;
+}
+#identity-check .verifying {
+    font-size: 1.1em;
+    color: #00ff41;
+    margin-top: 10px;
+    text-shadow: 0 0 8px #00ff41;
+}
+#verified-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.92);
+    z-index: 100;
+    animation: verifyingFade 1.5s;
+}
+#verified-modal .verified-box {
+    background: #111;
+    border: 2px solid #00ff41;
+    border-radius: 16px;
+    padding: 50px 60px;
+    color: #00ff41;
+    font-size: 2.2em;
+    text-align: center;
+    text-shadow: 0 0 18px #00ff41;
+    box-shadow: 0 0 40px #00ff41a0;
 }
 #discord-profile-area {
     display: flex;

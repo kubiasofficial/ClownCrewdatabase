@@ -70,45 +70,43 @@ window.addEventListener('DOMContentLoaded', () => {
             window.location.href = discordUrl;
         });
     }
-});
 
-// Po návratu z Discordu (reálné ověření přes backend)
-window.addEventListener('DOMContentLoaded', () => {
+    // Po návratu z Discordu (reálné ověření přes backend)
     const url = new URL(window.location.href);
     const username = url.searchParams.get('username');
     const avatar = url.searchParams.get('avatar');
     const id = url.searchParams.get('id');
     if (username && id) {
-        // Skryj login, ukaž profil sekci
+        // Skryj login, ukaž identity check sekci
         document.getElementById('discord-login-area').classList.add('hidden');
         const profileArea = document.getElementById('discord-profile-area');
         profileArea.classList.remove('hidden');
-        // Zobraz reálná data
+        // Zobraz profilovku, nick a text "Ověřuji tvoji identitu"
         let avatarUrl = avatar && avatar !== '' ? `https://cdn.discordapp.com/avatars/${id}/${avatar}.png` : 'https://cdn.discordapp.com/embed/avatars/0.png';
-        document.getElementById('discord-profile').innerHTML = `<img src="${avatarUrl}" alt="Profil"><div>${username}</div>`;
-        // Loading bar
-        const loading = document.getElementById('discord-loading');
-        loading.classList.remove('hidden');
-        let progress = 0;
-        const bar = document.getElementById('profile-progress');
-        const interval = setInterval(() => {
-            progress += 2;
-            bar.style.width = progress + '%';
-            if (progress >= 100) {
-                clearInterval(interval);
-                // Ověřeno animace
-                document.getElementById('profile-verifying').classList.remove('hidden');
-                document.getElementById('profile-verifying').innerText = `Ověřeno! Vítej, ${username}`;
-                setTimeout(() => {
-                    // Skryj vše, zobraz hlavní menu
-                    profileArea.classList.add('hidden');
-                    showMainMenu(username, avatarUrl);
-                }, 2200);
-            }
-        }, 30);
+        profileArea.innerHTML = `<div id='identity-check'><img src='${avatarUrl}' alt='Profil'><div class='nick'>${username}</div><div class='verifying'>Ověřuji tvoji identitu...</div></div>`;
+        // Po 2s zobraz modal "Ověřeno! Vítej, ..."
+        setTimeout(() => {
+            showVerifiedModal(username);
+            // Po 10s skryj modal a zobraz hlavní menu
+            setTimeout(() => {
+                hideVerifiedModal();
+                profileArea.classList.add('hidden');
+                showMainMenu(username, avatarUrl);
+            }, 10000);
+        }, 2000);
     }
 });
 
+function showVerifiedModal(username) {
+    let modal = document.createElement('div');
+    modal.id = 'verified-modal';
+    modal.innerHTML = `<div class='verified-box'>Ověřeno! Vítej, ${username}</div>`;
+    document.body.appendChild(modal);
+}
+function hideVerifiedModal() {
+    let modal = document.getElementById('verified-modal');
+    if (modal) modal.remove();
+}
 function showMainMenu(username, avatar) {
     // Vlož hlavní menu (zatím jen logo)
     const main = document.createElement('div');
