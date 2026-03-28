@@ -53,10 +53,10 @@ setTimeout(() => {
 }, 20000);
 
 // Optional: Prevent form submit (demo only)
-document.getElementById('login-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('Přihlášení odesláno! (demo)');
-});
+// document.getElementById('login-form').addEventListener('submit', function(e) {
+//     e.preventDefault();
+//     alert('Přihlášení odesláno! (demo)');
+// });
 
 // Discord login button handler
 window.addEventListener('DOMContentLoaded', () => {
