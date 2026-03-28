@@ -1,0 +1,181 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Share Tech Mono', monospace;
+    background: #000;
+    color: #00ff41;
+}
+#matrix-bg, #matrix-bg2, #matrix-bg3 {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+#matrix-bg2 {
+    opacity: 0.5;
+    filter: blur(1px) brightness(0.7);
+}
+#matrix-bg3 {
+    opacity: 0.3;
+    filter: blur(2px) brightness(0.5);
+}
+
+#loader {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.85);
+    z-index: 2;
+    animation: fadeIn 2s;
+}
+#logo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 0 30px #00ff41);
+    animation: logoPulse 2s infinite alternate;
+    border: 6px solid #00ff41;
+    background: #111;
+}
+.logo-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(0,255,65,0.15);
+    box-shadow: 0 0 60px #00ff41a0;
+    margin-bottom: 20px;
+}
+#progress-bar {
+    width: 260px;
+    height: 16px;
+    background: #111;
+    border: 2px solid #00ff41;
+    border-radius: 10px;
+    margin: 30px auto 0 auto;
+    overflow: hidden;
+    box-shadow: 0 0 20px #00ff41a0;
+}
+#progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00ff41 60%, #00ff41cc 100%);
+    border-radius: 10px 0 0 10px;
+    transition: width 0.2s linear;
+}
+#loading-text {
+    font-size: 1.5em;
+    letter-spacing: 2px;
+    color: #00ff41;
+    text-shadow: 0 0 10px #00ff41;
+    animation: blink 1.2s infinite;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+@keyframes logoPulse {
+    0% { filter: drop-shadow(0 0 30px #00ff41); }
+    100% { filter: drop-shadow(0 0 60px #00ff41); }
+}
+#login-container {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(1.1);
+    background: rgba(10, 10, 10, 0.95);
+    border: 2px solid #00ff41;
+    border-radius: 12px;
+    padding: 30px 30px 40px 30px;
+    z-index: 3;
+    box-shadow: 0 0 40px #00ff41a0;
+    min-width: 320px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s, transform 1s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Odstranění pozadí loga */
+    background-image: none !important;
+}
+#login-container.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+#login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    align-items: center;
+}
+#logo-login {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 20px #00ff41);
+    border: 3px solid #00ff41;
+    background: #111;
+}
+.login-logo {
+    width: 110px;
+    height: 110px;
+    margin-bottom: 10px;
+    margin-top: -60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0,255,65,0.15);
+    box-shadow: 0 0 30px #00ff41a0;
+}
+#login-form h2 {
+    margin: 0 0 10px 0;
+    color: #00ff41;
+    text-align: center;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #00ff41;
+}
+#login-form input {
+    background: #111;
+    border: 1px solid #00ff41;
+    border-radius: 6px;
+    padding: 12px;
+    color: #00ff41;
+    font-size: 1.1em;
+    outline: none;
+    transition: border 0.3s;
+}
+#login-form input:focus {
+    border: 1.5px solid #fff;
+}
+#login-form button {
+    background: #00ff41;
+    color: #111;
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00ff41a0;
+    transition: background 0.3s, color 0.3s;
+}
+#login-form button:hover {
+    background: #111;
+    color: #00ff41;
+    border: 1px solid #00ff41;
+}
+.hidden {
+    display: none;
+}
